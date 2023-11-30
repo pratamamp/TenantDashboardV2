@@ -6,3 +6,26 @@
   font-family: "AvenirNextLTPro";
   src: url("./assets/AvenirNextLTPro-Regular.ttf") format("opentype");
 }
+
+@layer components {
+  .navlink {
+    @apply cursor-pointer px-2 py-5 text-base font-medium text-p transition-all duration-300 hover:text-h;
+  }
+  .box-shadow {
+    box-shadow: 5px 5px 20px 8px rgb(86, 128, 208/5%);
+  }
+  .slide-top {
+    animation: slide-top 2500ms cubic-bezier(0.47, 0, 0.745, 0.715) 1000ms
+      infinite alternate-reverse both;
+  }
+}
+
+/* Animation */
+@keyframes slide-top {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-50px);
+  }
+}
