@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../components/sidebar";
 import { Outlet } from "react-router-dom";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 function DashboardLayout() {
   const [showNav, setShowNav] = useState(true);
@@ -29,7 +30,7 @@ function DashboardLayout() {
   return (
     <section className="flex w-full bg-[#F6F8F9] h-screen">
       {/* {showNav && <Sidebar showNav={showNav} />} */}
-      <Sidebar />
+      {showNav && <Sidebar />}
       <div className="flex-auto">
         <Outlet />
       </div>
@@ -37,4 +38,6 @@ function DashboardLayout() {
   );
 }
 
-export default DashboardLayout;
+export default withAuthenticationRequired(DashboardLayout, {
+  onRedirecting: () => <p>Loading...</p>,
+});

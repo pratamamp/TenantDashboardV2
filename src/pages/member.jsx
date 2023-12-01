@@ -1,11 +1,19 @@
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export function Member() {
-  const { user } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
-  return <div>Member</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  return (
+    isAuthenticated && (
+      <div>
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+      </div>
+    )
+  );
 }
 
-export default withAuthenticationRequired(Member, {
-  onRedirecting: () => <p>Loading...</p>,
-});
+export default Member;

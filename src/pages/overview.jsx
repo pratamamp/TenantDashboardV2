@@ -12,13 +12,6 @@ import { useState } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 function Overview() {
-  const [open, setOpen] = useState(0);
-  const [openAlert, setOpenAlert] = useState(true);
-
-  const handleOpen = (value) => {
-    setOpen(open === value ? 0 : value);
-  };
-
   return (
     <div className="flex flex-col h-screen bg-gray-200">
       {/* topbar */}
@@ -131,7 +124,7 @@ function Overview() {
             <div>
               <Typography variant="h6">Creator</Typography>
               <div className="flex items-center space-x-2">
-                <Typography color="green" variant="h8">
+                <Typography color="green" variant="h6">
                   4 Assigned
                 </Typography>
                 <Progress value={50} color="light-green" className="w-1/3" />
@@ -145,7 +138,7 @@ function Overview() {
               </div>
               <Typography variant="h6">Viewer</Typography>
               <div className="flex items-center space-x-2">
-                <Typography color="green" variant="h8">
+                <Typography color="green" variant="h6">
                   2 Assigned
                 </Typography>
                 <Progress value={50} color="light-green" className="w-1/3" />

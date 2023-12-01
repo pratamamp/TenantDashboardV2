@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -10,7 +9,6 @@ const Auth0ProviderWithRedirectCallback = ({ children, ...props }) => {
   const navigate = useNavigate();
 
   const onRedirectCallback = (appState) => {
-    console.log(appState);
     navigate((appState && appState.returnTo) || window.location.pathname);
   };
 
@@ -27,7 +25,7 @@ const providerConfig = {
   domain: config.domain,
   clientId: config.clientId,
   authorizationParams: {
-    redirect_uri: window.location.origin,
+    redirect_uri: window.location.origin + "/overview",
     audience: config.audience,
     // ...(config.audience ? { audience: config.audience } : null),
   },

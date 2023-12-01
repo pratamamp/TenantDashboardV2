@@ -13,6 +13,7 @@ import Application from "./pages/applications";
 import License from "./pages/license";
 import Home from "./pages/home";
 import { useAuth0 } from "@auth0/auth0-react";
+import Setting from "./pages/setting";
 
 function App() {
   const ROLES = {
@@ -71,6 +72,7 @@ function App() {
         <Route path="application" element={<Application />} />
         <Route path="member" element={<Member />} />
         <Route path="license" element={<License />} />
+        <Route path="setting" element={<Setting />} />
       </Route>
     </Routes>
   );
