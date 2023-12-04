@@ -32,7 +32,9 @@ function DashboardLayout() {
       {/* {showNav && <Sidebar showNav={showNav} />} */}
       {showNav && <Sidebar />}
       <div className="flex-auto">
-        <Outlet />
+        <div className="flex flex-col h-screen bg-gray-200">
+          <Outlet />
+        </div>
       </div>
     </section>
   );

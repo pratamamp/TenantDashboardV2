@@ -8,14 +8,10 @@ import {
 } from "@material-tailwind/react";
 
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 function Overview() {
   return (
-    <div className="flex flex-col h-screen bg-gray-200">
-      {/* topbar */}
-      <div className="h-16 bg-blue-gray-100 lg:hidden"></div>
+    <>
       {/* content */}
       <Typography variant="h3" color="gray" className="mt-8 px-2 lg:px-10 ">
         Overview
@@ -234,10 +230,8 @@ function Overview() {
           </div>
         </Card>
       </div>
-    </div>
+    </>
   );
 }
 
-export default withAuthenticationRequired(Overview, {
-  onRedirecting: () => <p>Loading...</p>,
-});
+export default Overview;
