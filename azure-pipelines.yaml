@@ -1,0 +1,60 @@
+trigger:
+  tags:
+    include:
+      - "*"
+  branches:
+    include:
+      - main
+      - master
+
+variables:
+  - group: gitlab-credential
+
+## Build stage
+stages:
+  - stage: "build"
+    displayName: "Build Job"
+    jobs:
+      - job: "build"
+        displayName: "Build job"
+        pool:
+          vmImage: "ubuntu-20.04"
+        steps:
+          - script: |
+              cat << EOF > .env
+              VITE_API_URL=$(VITE_API_URL)
+              EOF
+          - script: docker login $(CI_REGISTRY) -u $(CI_REGISTRY_USER) -p $(CI_REGISTRY_PASSWORD)
+            displayName: "docker login"
+          - script: docker build --pull -t $(CI_REGISTRY_IMAGE) .
+            displayName: "docker build"
+          - script: docker images
+            displayName: "docker check images"
+          - script: docker run --name app -d $(CI_REGISTRY_IMAGE):latest
+            displayName: "docker run"
+          - script: docker ps -a
+            displayName: "docker ps"
+          - script: docker logs app
+            displayName: "docker logs"
+          - script: docker tag $(CI_REGISTRY_IMAGE):latest $(CI_REGISTRY_IMAGE):latest
+            displayName: "docker tag"
+          - script: docker push $(CI_REGISTRY_IMAGE):latest
+            displayName: "docker push dev version"
+
+# Code Analysis
+  # - stage: "code_analysis"
+  #   displayName: "Code Analysis"
+  #   jobs:
+  #     - job: "code_analysis"
+  #       displayName: "Code Analysis"
+  #       steps:
+  #       - task: SonarQubePrepare@5
+  #         inputs:
+  #           SonarQube: 'sonar-integration'
+  #           scannerMode: 'CLI'
+  #           configMode: 'manual'
+  #           cliProjectKey: $(cliProjectKey)
+  #       - task: SonarQubeAnalyze@5
+  #       - task: SonarQubePublish@5
+  #         inputs:
+  #           pollingTimeoutSec: '300'
