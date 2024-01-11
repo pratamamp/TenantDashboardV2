@@ -18,6 +18,26 @@
     animation: slide-top 2500ms cubic-bezier(0.47, 0, 0.745, 0.715) 1000ms
       infinite alternate-reverse both;
   }
+  .circle-frame {
+    width: 50%;
+    background: red;
+    border-radius: 50%;
+
+    line-height: 0;
+    position: relative;
+  }
+
+  .circle::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  .circle-txt {
+    position: absolute;
+    bottom: 50%;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* Animation */

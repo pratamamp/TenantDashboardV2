@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "feb6dc7c-da80-4309-b2cd-73f830e991e1",
+		"name": "Rest API Tenant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19105027"
+	},
+	"item": [
+		{
+			"name": "All Member",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://{{BASE_URL}}/api/v1/member/"
+			},
+			"response": []
+		},
+		{
+			"name": "All Member (by Role)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{BASE_URL}}/api/v1/member/?role=User",
+					"protocol": "http",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"member",
+						""
+					],
+					"query": [
+						{
+							"key": "role",
+							"value": "User"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Member Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://{{BASE_URL}}/api/v1/member/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Member Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://{{BASE_URL}}/api/v1/member/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Member Update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"mad\",\r\n    \"email\": \"mad.skidipap@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://{{BASE_URL}}/api/v1/member/2"
+			},
+			"response": []
+		}
+	]
+}

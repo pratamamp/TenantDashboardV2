@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 
 function Overview() {
   return (
-    <>
+    <div className="h-screen flex flex-col">
       {/* content */}
-      <Typography variant="h3" color="gray" className="mt-8 px-2 lg:px-10 ">
+      <Typography variant="h3" color="gray" className="px-2 mt-6 lg:px-10 ">
         Overview
       </Typography>
-      <div className="flex-auto overflow-auto space-y-5 lg:space-y-0 p-10 lg:py-14 lg:grid grid-cols-6 grid-rows-4 grid-flow-col gap-6">
+      <div className="flex-1 overflow-auto space-y-5 lg:space-y-0 p-10 lg:grid grid-cols-6 grid-rows-4 grid-flow-col gap-6">
         <Card
           variant="gradient"
           color="white"
@@ -230,7 +230,7 @@ function Overview() {
           </div>
         </Card>
       </div>
-    </>
+    </div>
   );
 }
 

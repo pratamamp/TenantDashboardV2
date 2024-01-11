@@ -28,13 +28,11 @@ function DashboardLayout() {
   }, []);
 
   return (
-    <section className="flex w-full bg-[#F6F8F9] h-screen">
+    <section className="flex w-full bg-[#F6F8F9]">
       {/* {showNav && <Sidebar showNav={showNav} />} */}
       {showNav && <Sidebar />}
-      <div className="flex-auto">
-        <div className="flex flex-col h-screen bg-gray-200">
-          <Outlet />
-        </div>
+      <div className=" bg-gray-200 flex-1">
+        <Outlet />
       </div>
     </section>
   );
