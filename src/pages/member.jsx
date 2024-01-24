@@ -63,9 +63,30 @@ export function Member() {
       </span>
     </div>
   ));
+  const [newEmail, setNewEmail] = useState();
+
   const handleAddMemberDialog = (e) => {
-    console.log("Add Member!");
     setOpenDialog(!openDialog);
+  };
+
+  const submitAddMember = async (e) => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: newEmail, role: role }),
+    };
+
+    await fetch(API_URL + `/api/v1/member/`, requestOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseData) => {
+        console.log("POST Request Success");
+        console.log(responseData);
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -141,6 +162,7 @@ export function Member() {
                     </MenuList>
                   </Menu>
                   <Input
+                    onChange={(e) => setNewEmail(e.target.value)}
                     placeholder="Input Email"
                     className="rounded-l-none !border-t-blue-gray-200 focus:!border-t-gray-900"
                     labelProps={{
@@ -157,6 +179,7 @@ export function Member() {
                   type="button"
                   color="indigo"
                   className="flex items-center flex-1 justify-center"
+                  onClick={submitAddMember}
                 >
                   Send Invite
                 </Button>
@@ -204,7 +227,7 @@ export function Member() {
                             <tr key={index} className="flex w-full mb-2">
                               <td className="w-2/4">
                                 <div className="flex items-center gap-3">
-                                  <div className="w-8 aspect-square bg-blue-gray-500 rounded-full flex items-center justify-center">
+                                  <div className="w-11 aspect-square bg-blue-gray-500 rounded-full flex items-center justify-center">
                                     <span className="text-white">
                                       {/* {first?.charAt(0) + last?.charAt(0)} */}
                                       M
@@ -221,7 +244,7 @@ export function Member() {
                                     <Typography
                                       variant="small"
                                       color="light-blue"
-                                      className="font-normal opacity-70"
+                                      className="font-normal opacity-70 truncate"
                                     >
                                       {email}
                                     </Typography>
@@ -332,13 +355,13 @@ export function Member() {
                           <tr key={index} className="flex w-full mb-2">
                             <td className={`${classes} w-2/5`}>
                               <div className="flex items-center gap-3">
-                                <div className="w-11 h-11 bg-blue-gray-500 rounded-full flex items-center justify-center">
+                                <div className="w-10 aspect-square bg-blue-gray-500 rounded-full flex items-center justify-center">
                                   <span className="text-white">
                                     {/* {first?.charAt(0) + last?.charAt(0)} */}
                                     M
                                   </span>
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col w-4/5">
                                   <Typography
                                     variant="small"
                                     color="blue-gray"
@@ -349,7 +372,7 @@ export function Member() {
                                   <Typography
                                     variant="small"
                                     color="light-blue"
-                                    className="font-normal opacity-70"
+                                    className="font-normal opacity-70 hidden lg:block"
                                   >
                                     {email}
                                   </Typography>

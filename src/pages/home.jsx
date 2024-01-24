@@ -1,4 +1,3 @@
-import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Typography } from "@material-tailwind/react";
 import { FaChartSimple } from "react-icons/fa6";
