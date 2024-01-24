@@ -29,14 +29,21 @@ export default withMT({
       "5xl": "3rem",
       "6xl": "4rem",
     },
-
     screen: {
       sm: "380px",
       md: "768px",
       lg: "1024px",
       xl: "1280px",
     },
-
+    extend: {
+      colors: {
+        primary: "#0079C1",
+        theme: "#52BD94",
+        hover: "30946D",
+        p: "#A6A6A6",
+        h: "#191A15",
+      },
+    },
     fontFamily: {
       sans: ["AvenirNextLTPro", ...defaultTheme.fontFamily.sans],
     },
